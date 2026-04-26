@@ -8,6 +8,7 @@ function makeDestination(ticketCost: number): Destination {
     id: `dest-${ticketCost}`,
     name: { en: "Test", ar: "اختبار" },
     region: { en: "muscat", ar: "مسقط" },
+    company: { en: "", ar: "" },
     description: { en: "", ar: "" },
     categories: ["culture"],
     recommended_months: [10, 11, 12],
@@ -16,8 +17,7 @@ function makeDestination(ticketCost: number): Destination {
     avg_visit_duration_minutes: 60,
     lat: 23.58,
     lng: 58.38,
-    image_url: "",
-    highlights: [],
+    imageUrl: "",
   };
 }
 
@@ -32,22 +32,22 @@ const BASE_INPUT: PlannerInput = {
 describe("computeCostBreakdown", () => {
   it("hotel nights = days - 1 (not days)", () => {
     const result = computeCostBreakdown(0, [], { ...BASE_INPUT, days: 3 });
-    // 3 days → 2 nights × 45 OMR = 90
+    // 3 days → 2 nights * 45 OMR = 90
     expect(result.hotelOmr).toBe(90);
   });
 
   it("a 1-day trip uses 1 hotel night (minimum 1)", () => {
     const result = computeCostBreakdown(0, [], { ...BASE_INPUT, days: 1 });
-    // max(1, 1-1) = 1 night × 45 = 45
+    // max(1, 1-1) = 1 night * 45 = 45
     expect(result.hotelOmr).toBe(45);
   });
 
-  it("food cost = 6 OMR × days", () => {
+  it("food cost = 6 OMR * days", () => {
     const result = computeCostBreakdown(0, [], { ...BASE_INPUT, days: 4 });
     expect(result.foodOmr).toBe(24);
   });
 
-  it("fuel formula: km/12 × 0.22", () => {
+  it("fuel formula: km/12 * 0.22", () => {
     const result = computeCostBreakdown(120, [], BASE_INPUT);
     expect(result.fuelOmr).toBeCloseTo((120 / 12) * 0.22, 2);
   });
@@ -59,7 +59,7 @@ describe("computeCostBreakdown", () => {
   });
 
   it("budgetFeasible=true when within daily threshold", () => {
-    // medium: 100 OMR/day × 3 days = 300 threshold
+    // medium: 100 OMR/day * 3 days = 300 threshold
     // 0 km, 0 tickets, food=18, hotel=90 → total=108 < 300
     const result = computeCostBreakdown(0, [], BASE_INPUT);
     expect(result.budgetFeasible).toBe(true);
@@ -67,7 +67,7 @@ describe("computeCostBreakdown", () => {
 
   it("budgetFeasible=false when over threshold", () => {
     // luxury has 90 OMR/night; low tier allows only 50/day
-    // 1000 km of fuel alone: 1000/12*0.22 ≈ 18.3 OMR — but with low budget 50/day×3=150
+    // 1000 km of fuel alone: 1000/12*0.22 ≈ 18.3 OMR — but with low budget 50/day*3=150
     // let's just use a ton of destinations with high ticket costs + low budget
     const expensive = Array.from({ length: 10 }, () => makeDestination(20));
     const lowInput: PlannerInput = { ...BASE_INPUT, budget: "low" };

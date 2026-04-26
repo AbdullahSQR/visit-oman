@@ -185,7 +185,7 @@ function Chip({ label, onRemove }: { label: string; onRemove: () => void }) {
     <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full
       bg-teal/10 text-teal text-xs font-semibold">
       {label}
-      <button onClick={onRemove} className="hover:text-omred ml-0.5">×</button>
+      <button onClick={onRemove} className="hover:text-omred ml-0.5">&times;</button>
     </span>
   );
 }

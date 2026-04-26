@@ -8,7 +8,7 @@ export const contentType = "image/png";
  *
  * Uses the ✦ four-pointed star — the recurring decorative motif throughout
  * the UI — on the brand amber background. Consistent, recognisable, and
- * renders cleanly at 16 × 16 px all the way up to 512 × 512.
+ * renders cleanly at 16 x 16 px all the way up to 512 x 512.
  */
 export default function Icon() {
   return new ImageResponse(

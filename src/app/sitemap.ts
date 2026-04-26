@@ -14,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${BASE_URL}/${locale}/plan`,         lastModified: now, changeFrequency: "monthly" as const, priority: 0.7 },
   ]);
 
-  // One URL per destination per locale — 38 destinations × 2 = 76 entries
+  // One URL per destination per locale — 38 destinations * 2 = 76 entries
   const destinationRoutes = LOCALES.flatMap((locale) =>
     DESTINATIONS.map((d) => ({
       url:             `${BASE_URL}/${locale}/destinations/${d.id}`,

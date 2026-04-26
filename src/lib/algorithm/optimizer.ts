@@ -240,7 +240,7 @@ export function allocateRegions(input: PlannerInput): RegionPlan[] {
  * Items: destination visit durations as weights, scores as values.
  * Returns the optimal subset of destinations that maximises total score within budget.
  *
- * Complexity: O(n × T) where n = candidates, T = time budget in minutes.
+ * Complexity: O(n * T) where n = candidates, T = time budget in minutes.
  * n ≤ 15 per region per day, T ≤ 480 min → tractable in-browser.
  */
 function dpSelectStops(

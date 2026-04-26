@@ -4,13 +4,13 @@
  * Formulae (from contest spec):
  *   fuel    = total_km / 12 * 0.22  (OMR per litre at 12 km/l and 0.22 OMR/l)
  *   tickets = sum(ticket_cost_omr)
- *   food    = 6 OMR × days
+ *   food    = 6 OMR * days
  *   hotel   = low: 20, medium: 45, luxury: 90 (per night)
  *
  * Budget thresholds per tier (total trip cost):
- *   low:     ≤ 50 OMR/day × days
- *   medium:  ≤ 100 OMR/day × days
- *   luxury:  ≤ 200 OMR/day × days
+ *   low:     ≤ 50 OMR/day * days
+ *   medium:  ≤ 100 OMR/day * days
+ *   luxury:  ≤ 200 OMR/day * days
  *
  * If the cost exceeds the threshold, the function returns budgetFeasible=false
  * and the caller (optimizer) will have already substituted cheaper alternatives.
