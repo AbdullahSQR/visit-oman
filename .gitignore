@@ -1,3 +1,6 @@
+# ── Claude Code workspace (not project source) ───────────────────────────────
+.claude/
+
 # ── Dependencies ─────────────────────────────────────────────────────────────
 node_modules/
 
